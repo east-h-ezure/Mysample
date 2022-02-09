@@ -49,6 +49,31 @@ namespace MySample
             var length = message.Length;
             Console.WriteLine("{0}文字", length);
 
+            //空文字列
+            var emptyString = "";
+            Console.WriteLine("一行目");
+            Console.WriteLine(emptyString);
+            Console.WriteLine("三行目");
+
+            //文字型(not文字列型)
+            //シングルクオーテーション
+            char alphabet = 'A';
+            Console.WriteLine(alphabet);
+
+            //論理型
+            bool exists = true;
+            Console.WriteLine(exists);
+
+            //2章演習
+            var name3 = "山田";
+            Console.WriteLine("{0}さん、こんにちは", name3);
+            var name4 = "近藤";
+            var age2 = 19;
+            Console.WriteLine("{0}さんは今年で{1}歳になります", name4, age2);
+            var kilometersPerHour = 54;
+            var hour = 3;
+            var kilometer = kilometersPerHour * hour;
+            Console.WriteLine(kilometer);
 
         }
     }
