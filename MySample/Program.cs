@@ -222,6 +222,17 @@ namespace MySample
             {
                 Console.WriteLine("入力した点数に誤りがあります");
             }
+
+            //繰り返し距離
+            var year = 1;
+            while (year <= 64)
+            {
+                var westernYear = year + 1925;
+                Console.WriteLine($"昭和{year}年は西{westernYear}暦年です");
+                year ++;
+            }
+
+
         }
     }
 }
