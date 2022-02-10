@@ -232,7 +232,52 @@ namespace MySample
                 year ++;
             }
 
+            var num7 = 0;
+            while (num7 <= 0 || 5 <= num7)
+            {
+                Console.WriteLine("1, 2, 3, 4のいずれかを入力してください");
+                var line7 = Console.ReadLine();
+                num7 = int.Parse(line7);
+            }
+            Console.WriteLine($"{num7}が入力されました");
 
+            for (var year3 = 1; year3 <= 64; year3++)
+            {
+                var westernYear = year3 + 1925;
+                Console.WriteLine($"昭和{year3}年は西暦{westernYear}年です");
+            }
+
+            //do-while文→条件を満たすまで、最低1回は処理を行う文
+            var line8 = "";
+            do
+            {
+                Console.WriteLine("何か入力してください");
+                line8 = Console.ReadLine();
+            } while (line8 == "");
+            Console.WriteLine(line8);
+
+            //二重ループ(ややこしくなるので、ループは基本二重まで)
+            for (var x = 1; x <= 9; x++)
+            {
+                for (var y = 1; y <= 9; y++)
+                {
+                    var n = x * y;
+                    Console.WriteLine($"{x} × {y} = {n}");
+                }
+            }
+            Console.WriteLine("掛け算終わり");
+
+
+            //break
+            for (var i = 0; i < 20; i++)
+            {
+                var s = Console.ReadLine();
+                if (s == "")
+                {
+                    break;
+                }
+                Console.WriteLine(s);
+            }
         }
     }
 }
