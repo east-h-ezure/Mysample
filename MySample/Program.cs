@@ -278,6 +278,67 @@ namespace MySample
                 }
                 Console.WriteLine(s);
             }
+
+            //配列
+            var scores = new int[] { 21, 54, 6565, 676, 8, 343, 3 };
+            Console.WriteLine(scores[0]);
+            Console.WriteLine(scores[4]);
+
+            //foreach
+            var scores8 = new int[] { 65, 54, 78, 96, 81 };
+            var total4 = 0;
+            foreach (var p in scores8)
+            {
+                total4 += p;
+                //foreachはループの中では読み込み専用
+            }
+            var average = (double)total4 / scores8.Length;
+            Console.WriteLine("平均点: {0}", average);
+
+            //2次元配列
+            var array2d = new int[4, 3];
+            array2d[3, 2] = 12;
+            Console.WriteLine(array2d[3, 2]);
+
+            //配列の宣言と初期化を同時にする場合
+            var array2d2 = new int[,]
+            {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9},
+                {10, 11, 12}
+            };
+            for (var row = 0; row < array2d2.GetLength(0); row++)
+            {
+                for (var col = 0; col < array2d2.GetLength(1); col++)
+                {
+                    Console.WriteLine("{0}", array2d2[row, col]);
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("配列の平均");
+            var array3 = new int[] { 12, 32, 73, 64, 566, 21, 1, 54};
+            var total5 = 0;
+            foreach (var q in array3)
+            {
+                total5 += q;
+            }
+            var average2 = total5 / array3.Length;
+            Console.WriteLine($"平均点：{ average}");
+
+            var nums10 = new int[20];
+            for (var i = 0; i < nums10.Length; i++)
+            {
+                nums10[i] = 100 + i;
+            }
+            foreach (var n in nums10)
+            {
+                Console.WriteLine(n);
+            }
+
+
         }
+
     }
 }
