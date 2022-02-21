@@ -10,56 +10,103 @@ namespace MySample
     {
         static void Main(string[] args)
         {
-            var book = new Book
-            {
-                Title = "吾輩は猫である",
-                Memo = "猫ちゃんが主人公の素晴らしい作品",
-            };
-            
-            book.Print();
+            //インスタンスプロパティとインスタンスメソッド
+            var date = new DateTime(2019, 10, 8);
+            var year = date.Year;
+            var month = date.Month;
+            var day = date.Day;
+            var date1 = date.AddDays(1);
+            Console.WriteLine($"{year}年{month}月{day}日");
+            Console.WriteLine(date1);
 
-            var employee = new Employee
+            //静的メソッド→インスタンスを生成せずに利用できるメソッド(ここでいうIsLeapYear)
+            //Console.ReadLine, int.Parseも静的メソッドである
+            var isLeapYear = DateTime.IsLeapYear(2020);
+            if (isLeapYear)
             {
-                Id = 1,
-                FamilyName = "本田",
-                GivenName = "翼",
-                EmailAddress = "tsubasa@gmail.com",
-            };
-            employee.Print2();
-            Console.WriteLine(employee.GetFullName());
+                Console.WriteLine("うるう年です");
+            }
+            else
+            {
+                Console.WriteLine("うるう年ではありません");
+            }
 
-            
+            var book1 = new Book
+            {
+                Title = "伊豆の踊子",
+                Author = "川端康成",
+            };
+            book1.PrintTitle();
+            var book2 = new Book
+            {
+                Title = "走れメロス",
+                Author = "太宰治",
+            };
+            book2.PrintTitle();
+            var book3 = new Book
+            {
+                Title = "銀河鉄道の夜",
+                Author = "宮沢賢治",
+            };
+            book3.PrintTitle();
+            Book.ClearCount();
+            Console.WriteLine(Book.Count);
+
+            //静的クラス
+            var scores = new int[] { 55, 60, 45, 70, 85, 93, 68 };
+            var total = ArrayUtils.Total(scores);
+            var average = ArrayUtils.Average(scores);
+            Console.WriteLine($"合計：{total}, 平均：{average}");
+            var max = ArrayUtils.Max(scores);
+            var min = ArrayUtils.Min(scores);
+            Console.WriteLine($"配列の最大値は{max}です");
+            Console.WriteLine($"配列の最小値は{min}です");
+
         }
-
         class Book
         {
-            public string Title { get; set; }
-            public string Memo { get; set; }
-            
-            public void Print()
+            public static int Count { get; set; }
+
+            //静的メソッド→インスタンスを生成しなくても利用できるメソッド
+            public static void ClearCount()
             {
-                Console.WriteLine($"タイトル：{Title}");
-                Console.WriteLine($"概要：{Memo}");
+                Count = 0;
+            }
+            public string Title { get; set;  }
+            public string Author { get; set;  }
+            public void PrintTitle()
+            {
+                Console.WriteLine($"書籍名：{Title}");
+                Count++;
+                Console.WriteLine(Count);
             }
         }
 
-        class Employee
+        static class ArrayUtils
         {
-            public int Id { get; set;  }
-            public string FamilyName { get; set; }
-            public string GivenName { get; set;  }
-            public string EmailAddress { get; set;  }
-
-            public void Print2()
+            public static int Total(int[] numbers)
             {
-                Console.WriteLine($"ID{Id}の従業員の名前は{FamilyName} {GivenName}です。");
-                Console.WriteLine($"Emailアドレスは{EmailAddress}です");
+                var total = 0;
+                foreach (var n in numbers)
+                {
+                    total += n;
+                }
+                return total;
             }
 
-            public string GetFullName()
+            public static double Average(int[] numbers)
             {
-                string FullName = FamilyName + GivenName;
-                return FullName;
+                var total = Total(numbers);
+                return (double)total / numbers.Length;
+            }
+
+            public static int Max(int[] numbers)
+            {
+                return numbers.Max();
+            }
+            public static int Min(int[] numbers)
+            {
+                return numbers.Min();
             }
         }
 
