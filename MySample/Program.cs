@@ -13,30 +13,40 @@ namespace MySample
         //リストと配列の使い開け
         //通常はリストを使う、要素の追加削除などを行わない場合は配列をつかうといい
         {
-            var lines = new List<string>
+            var dates = new List<DateTime>
             {
-                "おはよう",
-                "こんにちは",
-                "こんばんは"
+                new DateTime(2019,12, 9, 8,15, 0),
+                new DateTime(2020, 8, 4,23, 6, 0),
+                new DateTime(2010, 4, 5, 8, 1, 0),
+                new DateTime(2018,12,12,10,13, 0),
+                new DateTime(2016, 3,18,15,35, 0),
+                new DateTime(2014, 4, 1,18,46, 0),
             };
-            lines.Add("おやすみ");
-            lines.Add("さようなら");
-            /*            foreach (var s in lines)
-                        {
-                            Console.WriteLine(s);
-                        }*/
+            var count = dates.Count();
+            Console.WriteLine(count);
 
-            var messages = lines;
-            messages.RemoveAt(2);
-            foreach (var t in messages)
+            var books = new List<Book>();
+            books.Add(new Book("人間失格", "太宰治", 212, 5));
+            books.Add(new Book("吾輩は猫である", "夏目漱石", 610, 4));
+            books.Add(new Book("女生徒", "太宰治", 279, 4));
+            books.Add(new Book("銀河鉄道の夜", "宮沢賢治", 357, 3));
+            books.Add(new Book("伊豆の踊子", "川端康成", 201, 3));
+            books.Add(new Book("こゝろ", "夏目漱石", 378, 5));
+        
+            var query = books.Where(x => x.Rating >= 4);
+            foreach (var book in query)
             {
-                Console.WriteLine(t);
+                Console.WriteLine($"{book.Title} {book.Author}");
             }
-            var count = messages.Count;
-            Console.WriteLine($"要素数：{count}");
-
+            Console.WriteLine("タイトル名で並べ替え");
+            var orderby = books.OrderBy(x => x.Title);
+            foreach (var book2 in orderby)
+            {
+                Console.WriteLine($"{book2.Title} {book2.Author}");
+            }
         }
-        class book
+
+        class Book
         {
             public string Title { get; set; }
             public string Author { get; set; }
@@ -50,5 +60,6 @@ namespace MySample
                 Rating = rating;
             }
         }
+
     }
 }
